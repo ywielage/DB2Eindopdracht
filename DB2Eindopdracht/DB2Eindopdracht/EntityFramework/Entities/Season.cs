@@ -4,7 +4,7 @@
     {
         public int seasonId { get; set; }
         public string title { get; set; }
-        [Maxlength]
+        /*[Maxlength]*/
         public int seasonNumber { get; set; }
     }
 }
