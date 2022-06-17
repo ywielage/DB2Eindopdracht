@@ -9,10 +9,7 @@
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="MongoDB.Driver" Version="2.16.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ADO.NET\" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
 </Project>
