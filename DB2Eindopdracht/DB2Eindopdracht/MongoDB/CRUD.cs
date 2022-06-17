@@ -24,7 +24,7 @@ namespace DB2Eindopdracht.MongoDB
             Console.WriteLine("Created");
         }*/
         
-        public async void readSeries()
+        public void readSeries()
         {
             var collection = database.GetCollection<BsonDocument>("Series");
             var firstdocument = collection.Find(new BsonDocument()).FirstOrDefault();

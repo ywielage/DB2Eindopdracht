@@ -1,0 +1,8 @@
+﻿namespace DB2Eindopdracht.EntityFramework.Entities
+{
+    public class Preference
+    {
+        public int ProfileId { get; set; }
+        public int KijkwijzerId { get; set; }
+    }
+}
