@@ -10,8 +10,8 @@ namespace DB2Eindopdracht.MongoDB
         {
             MongoClient dbClient = new MongoClient("mongodb+srv://testAcc:testAcc@cluster0.ywwyyyo.mongodb.net/?retryWrites=true&w=majority");
 
-            new CRUD().Run(1);
-
+            new CRUD().Run();
+            Console.WriteLine("Hallo");
             // Create
             
             //new CRUD().createSeries(1, 2, "titleee");
