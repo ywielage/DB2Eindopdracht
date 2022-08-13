@@ -14,12 +14,6 @@ namespace DB2Eindopdracht.ADO.NET
             stopwatch = new Stopwatch();
         }
 
-        // Uncomment to use
-/*        public static void Main(String[] args)
-        {
-            new ADONET().Run(100);
-        }*/
-
         // Replace <Method>() with any CRUD method
         public async void Run(int loop)
         {
