@@ -57,6 +57,7 @@ namespace DB2Eindopdracht.ADO.NET
                     await UpdateCustomer();
                 }
                 stopwatch.Stop();
+                Console.WriteLine("Data updated");
                 Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
             }
         }

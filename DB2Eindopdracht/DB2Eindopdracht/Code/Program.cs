@@ -15,7 +15,7 @@ namespace DB2Eindopdracht
                 ADO.NET.ADONET ado = new ADO.NET.ADONET();
                 // Parameters:
                 // Amount of loops, Version (Create, Read, Delete, Update)
-                ado.Run(1,3);
+                ado.Run(1,0);
             } 
             else if(version == "EF")
             {
