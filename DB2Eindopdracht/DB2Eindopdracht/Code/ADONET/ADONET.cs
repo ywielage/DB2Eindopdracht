@@ -14,16 +14,51 @@ namespace DB2Eindopdracht.ADO.NET
             stopwatch = new Stopwatch();
         }
 
-        // Replace <Method>() with any CRUD method
-        public async void Run(int loop)
+        public async void Run(int loop, int type)
         {
-            stopwatch.Start();
-            for (int i = 1; i < loop; i++)
+            if (type == 0)
             {
-                await DeleteCustomer("mail" + i + "@gmail.com");
+                stopwatch.Start();
+                for (int i = 0; i < loop; i++)
+                {
+                    await CreateCustomer("email" + i + "@gmail.com");
+                }
+                stopwatch.Stop();
+                Console.WriteLine("Customer added");
+                Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
             }
-            stopwatch.Stop();
-            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+            else if (type == 1)
+            {
+                stopwatch.Start();
+                for (int i = 0; i < loop; i++)
+                {
+                    await ReadCustomer("email" + i + "@gmail.com");
+                }
+                stopwatch.Stop();
+                Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+            }
+            else if (type == 2)
+            {
+                stopwatch.Start();
+                for (int i = 0; i < loop; i++)
+                {
+                    await DeleteCustomer("email" + i + "@gmail.com");
+                    Console.WriteLine("Customer named: email" + i + "gmail.com has been deleted from the database");
+                }
+                stopwatch.Stop();
+                
+                Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+            }
+            else if (type == 3)
+            {
+                stopwatch.Start();
+                for (int i = 0; i < loop; i++)
+                {
+                    await UpdateCustomer();
+                }
+                stopwatch.Stop();
+                Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+            }
         }
 
         public async Task<int> CreateCustomer(string emailAdress)
@@ -65,8 +100,7 @@ namespace DB2Eindopdracht.ADO.NET
             }
 
         }
-
-
+    
         public async Task<int> UpdateCustomer()
         {
             using (SqlConnection conn = new SqlConnection("data source=(localdb)\\MSSQLLocalDB;Initial catalog=NetflixDB;"))
