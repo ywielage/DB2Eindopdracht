@@ -8,7 +8,7 @@ namespace DB2Eindopdracht
     {
         public virtual DbSet<Episode> Episodes { get; set; }
         public virtual DbSet<Season> Seasons { get; set; }
-        public DatabaseContext() : base("ConnectionName")
+        public DatabaseContext() : base("data source=(localdb)\\MSSQLLocalDB;Initial catalog=NetflixDB;")
         {
             Database.SetInitializer(
                 new DropCreateDatabaseAlways<DatabaseContext>());
