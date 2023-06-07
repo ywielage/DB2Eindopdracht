@@ -31,10 +31,10 @@ namespace DB2Eindopdracht
         public DatabaseContext() : base("ConnectionName")
         {
             Database.SetInitializer(
-                new DropCreateDatabaseAlways<DatabaseContext>());
+                new CreateDatabaseIfNotExists<DatabaseContext>());
         }
 
-        public void addData() { 
+/*        public void addData() { 
             using  (var db = new DatabaseContext())
             {
                 try
@@ -58,6 +58,6 @@ namespace DB2Eindopdracht
                     Console.WriteLine(ex.Message);
                 }
             }
-        }
+        }*/
     }
 }

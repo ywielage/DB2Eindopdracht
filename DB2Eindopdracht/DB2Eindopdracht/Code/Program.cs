@@ -24,27 +24,86 @@ namespace DB2Eindopdracht
                 {
                     try
                     {
-                        var contents = dbContext.Contents.ToList();
-                        Console.WriteLine("EF has been created");
+                        String crud = "U";
+                        int loop = 100;
 
-
-                        var newCustomer = new User
+                        if (crud == "C")
                         {
-                            EmailAdress = "1@gmail.com",
-                            Password = "1pw",
-                            Active = true,
-                            LoginAttempts = 1,
-                            Blocked = true,
-                            Date = "762023"
-                        };
+                            var contents = dbContext.Contents.ToList();
 
-                        dbContext.Users.Add(newCustomer);
-                        dbContext.SaveChanges();
-                        Console.WriteLine("Data has been inserted");
+                            for(int x = 1; x < loop; x++) { 
+                            
+                                var newCustomer = new User
+                                {
+                                    EmailAdress = "1@gmail.com",
+                                    Password = "1pw",
+                                    Active = true,
+                                    LoginAttempts = 1,
+                                    Blocked = true,
+                                    Date = "762023"
+                                };
+
+                                dbContext.Users.Add(newCustomer);
+                            }
+                            dbContext.SaveChanges();
+                            Console.WriteLine("Data has been inserted");
+                        }
+                        else if (crud == "R")
+                        {
+                            Console.WriteLine("Reading:");
+                            var users = dbContext.Users.Take(loop).ToList();
+
+                            Console.WriteLine("Users read: " + users.Count());
+                            foreach (var user in users)
+                            {
+                                int UserID = user.UserId;
+                                String EmailAdress = user.EmailAdress;
+                                String Password = user.Password;
+                                bool Active = user.Active;
+                                int LoginAttempts = user.LoginAttempts;
+                                bool Blocked = user.Blocked;
+                                String Date = user.Date;
+
+                                Console.WriteLine("Gebruiker:");
+                                Console.WriteLine($"UserID: {UserID}" +
+                                $"  EmailAdress: {EmailAdress}" +
+                                $"  Active: {Active}");
+                            };
+                        }
+                        else if (crud == "U")
+                        {
+                            var users = dbContext.Users.Take(loop).ToList();
+
+                            foreach (var user in users)
+                            {
+                                user.EmailAdress = "invalid@gmail.com";
+                            };
+
+                            dbContext.SaveChanges();
+                            Console.WriteLine("Users updated: " + users.Count());
+                        }
+                        else if (crud == "D")
+                        {
+                            var usersToDelete = dbContext.Users.Where(u => u.Active == true).ToList();
+
+                            if (usersToDelete.Count > 0)
+                            {
+                                
+                                dbContext.Users.RemoveRange(usersToDelete);
+
+                                
+                                dbContext.SaveChanges();
+                                Console.WriteLine($"{usersToDelete.Count} records have been deleted");
+                            }
+                            else
+                            {
+                                Console.WriteLine("No records found to delete");
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Errorororororr: " + ex.Message);
+                        Console.WriteLine("Database failed: : " + ex.Message);
                     }
                 }
 
