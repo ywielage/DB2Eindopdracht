@@ -1,7 +1,10 @@
-﻿namespace DB2Eindopdracht.EntityFramework.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DB2Eindopdracht.EntityFramework.Entities
 {
     public class WatchTime
     {
+        [Key]
         public int watchTime { get; set; }
         public int ProfileId { get; set; }
         public int ContentId { get; set; }

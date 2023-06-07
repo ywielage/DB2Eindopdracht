@@ -1,7 +1,10 @@
-﻿namespace DB2Eindopdracht.EntityFramework.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DB2Eindopdracht.EntityFramework.Entities
 {
     public class Movie
     {
+        [Key]
         public int MovieId { get; set; }
         public int ContentId { get; set; }
         public string Title { get; set; }

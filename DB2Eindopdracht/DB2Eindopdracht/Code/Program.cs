@@ -1,11 +1,12 @@
-﻿using MongoDB.Driver;
+﻿using DB2Eindopdracht.EntityFramework.Entities;
+using MongoDB.Driver;
 using System;
 
 namespace DB2Eindopdracht
 {
     public class Program
     {
-        static string version = "ADO";
+        static string version = "EF";
 
         public static void Main(String[] args)
         {
@@ -19,7 +20,36 @@ namespace DB2Eindopdracht
             } 
             else if(version == "EF")
             {
+                using (var dbContext = new DatabaseContext())
+                {
+                    try
+                    {
+                        var contents = dbContext.Contents.ToList();
+                        Console.WriteLine("EF has been created");
 
+
+                        var newCustomer = new User
+                        {
+                            EmailAdress = "1@gmail.com",
+                            Password = "1pw",
+                            Active = true,
+                            LoginAttempts = 1,
+                            Blocked = true,
+                            Date = "762023"
+                        };
+
+                        dbContext.Users.Add(newCustomer);
+                        dbContext.SaveChanges();
+                        Console.WriteLine("Data has been inserted");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Errorororororr: " + ex.Message);
+                    }
+                }
+
+                
+                Console.ReadKey();
             }
             if (version == "Mongo")
             {

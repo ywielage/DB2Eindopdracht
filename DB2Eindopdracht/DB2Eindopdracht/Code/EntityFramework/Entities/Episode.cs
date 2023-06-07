@@ -1,7 +1,10 @@
-﻿namespace DB2Eindopdracht.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DB2Eindopdracht.Entities
 {
     public class Episode
     {
+        [Key]
         public int episodeId { get; set; }
         public int seasonId { get; set; }
         public int contentId { get; set; }
