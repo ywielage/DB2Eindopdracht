@@ -7,8 +7,8 @@ namespace DB2Eindopdracht
 {
     public class Program
     {
-        static string version = "ADO";
-        static int loops = 100;
+        static string version = "Mongo";
+        static int loops = 10;
         // Action: CRUD op volgorde. 0 = Create, 1 = Read etc.
         static int action = 2;
 

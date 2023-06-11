@@ -50,7 +50,7 @@ namespace DB2Eindopdracht.MongoDB
             }
             else if(action == 2)
             {
-                UpdateSeries(1);
+                UpdateSeries();
             }
             else if(action == 3)
             {
@@ -103,14 +103,15 @@ namespace DB2Eindopdracht.MongoDB
             Console.WriteLine($"Read {loops} documents!");
         }
 
-        public void UpdateSeries(int contentId)
+        public void UpdateSeries()
         {
             var collection = database.GetCollection<BsonDocument>("Series");
-            var filter = Builders<BsonDocument>.Filter.Eq("contentId", contentId);
-            var update = Builders<BsonDocument>.Update.Set("title", "Nieuws");
+            
 
             for (int x = 0; x < loops; x++)
             {
+                var filter = Builders<BsonDocument>.Filter.Eq("seriesId", x);
+                var update = Builders<BsonDocument>.Update.Set("title", "newTitle");
                 collection.UpdateOne(filter, update);
             }
 
