@@ -1,17 +1,21 @@
 ﻿using DB2Eindopdracht.Entities;
 using DB2Eindopdracht.EntityFramework.Entities;
 using System.Data.Entity;
+using System.Data.SqlClient;
+using System.Diagnostics;
 
 
 namespace DB2Eindopdracht
 {
     public class EFCrud 
     {
-
+        Stopwatch stopwatch;
         int loop;
         public EFCrud(int loop, int action)
         {
             this.loop = loop;
+            stopwatch = new Stopwatch();
+            stopwatch.Start();
             if(action == 0)
             {
                 CreateData();
@@ -28,7 +32,8 @@ namespace DB2Eindopdracht
             {
                 DeleteData();
             }
-
+            stopwatch.Stop();
+            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
             Console.ReadKey();
         }
 
@@ -40,7 +45,7 @@ namespace DB2Eindopdracht
                 {
                     var contents = dbContext.Contents.ToList();
 
-                    for (int x = 1; x < loop; x++)
+                    for (int x = 0; x < loop; x++)
                     {
 
                         var newCustomer = new User
