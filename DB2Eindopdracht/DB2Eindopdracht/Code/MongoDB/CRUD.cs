@@ -3,6 +3,10 @@ using MongoDB.Bson;
 using System.Diagnostics;
 using System;
 using DB2Eindopdracht.EntityFramework.Entities;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
+using System.Threading.Tasks;
 
 namespace DB2Eindopdracht.MongoDB
 {
@@ -19,16 +23,19 @@ namespace DB2Eindopdracht.MongoDB
 
         public CRUD(int loops, int action)
         {
-            try
-            {
-                dbClient = new MongoClient("mongodb+srv://testAcc:8CZl474X4xtz8Szl@cluster0.ywwyyyo.mongodb.net/?retryWrites=true&w=majority");
-                database = dbClient.GetDatabase("NetflixDB");
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine("Cannot connect to MongoDB" + ex.Message);
-            }
+            dbClient = new MongoClient("mongodb+srv://testAcc:8CZl474X4xtz8Szl@cluster0.ywwyyyo.mongodb.net/?retryWrites=true&w=majority");
+            database = dbClient.GetDatabase("NetflixDB");
 
+            var collectionNames = database.ListCollectionNames().ToList();
+
+            if (collectionNames.Count > 0)
+            {
+                Console.WriteLine("Connection to MongoDB successful!");
+            }
+            else
+            {
+                Console.WriteLine("Failed to connect to MongoDB or no collections found.");
+            }
 
             stopwatch = new Stopwatch();
 
@@ -36,14 +43,13 @@ namespace DB2Eindopdracht.MongoDB
             this.loops = loops;
         }
 
-        public async void Run()
+        public void Run()
         {
             stopwatch.Start();
 
-
             if(action == 0) 
             {
-                await createSeries(1, "TestTitle");
+                createSeries(1, "TestTitle");
             }
             else if (action == 1)
             {
@@ -58,31 +64,31 @@ namespace DB2Eindopdracht.MongoDB
                 deleteSeries(1);
             }
 
-
             stopwatch.Stop();
             Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
         }
 
-        public async Task createSeries(int contentId, string title)
+        public void createSeries(int contentId, string title)
         {
             var collection = database.GetCollection<BsonDocument>("Series");
             var docList = new List<BsonDocument>();
 
-
             try
-            {
+            { 
                 for (int x = 0; x < loops; x++)
                 {
                     docList.Add(new BsonDocument { { "seriesId", x }, { "contentId", contentId }, { "title", $"{x}{title}" } });
 
-                    await collection.InsertManyAsync(docList);
                     Console.WriteLine("Documents inserted");
                 }
+                collection.InsertManyAsync(docList);
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+
+            Console.WriteLine($"Created {loops} documents!");
         }
 
         public void readSeries(int contentId)
@@ -90,7 +96,7 @@ namespace DB2Eindopdracht.MongoDB
             try
             {
                 var collection = database.GetCollection<BsonDocument>("Series");
-                List<BsonDocument> list = collection.Find(new BsonDocument("contentId", contentId)).ToList();
+                List<BsonDocument> list = collection.Find(new BsonDocument("contentId", contentId)).Limit(loops).ToList();
 
                 list.ForEach(x =>
                    Console.WriteLine(x)
@@ -100,43 +106,34 @@ namespace DB2Eindopdracht.MongoDB
             {
                 Console.WriteLine("readSeries error: " + ex.Message);
             }
+
+            Console.WriteLine($"Read {loops} documents!");
         }
 
-
-        public async void UpdateSeries(int contentId)
+        public void UpdateSeries(int contentId)
         {
+            var collection = database.GetCollection<BsonDocument>("Series");
             var filter = Builders<BsonDocument>.Filter.Eq("contentId", contentId);
             var update = Builders<BsonDocument>.Update.Set("title", "Nieuws");
-            var collection = database.GetCollection<BsonDocument>("Series");
 
-            try
+            for (int x = 0; x < loops; x++)
             {
-                await collection.UpdateManyAsync(filter, update);
+                collection.UpdateOne(filter, update);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+
+            Console.WriteLine($"Updated {loops} documents!");
         }
-
-
-
-        /*        public void updateSeries()
-                {
-                    var filter = Builders<BsonDocument>.Filter.Eq("seriesId", 121);
-                    var update = Builders<BsonDocument>.Update.Set("title", "Nieuws");
-                    var collection = database.GetCollection<BsonDocument>("Series");
-                    collection.UpdateOneAsync(filter, update);
-                }{ "seriesId", seriesId
-            }, { "contentId", contentId
-        }, { "title", title }
-        **/
 
         public void deleteSeries(int contentId)
         {
-            var filter = Builders<BsonDocument>.Filter.Eq("contentId", contentId);
             var collection = database.GetCollection<BsonDocument>("Series");
-            collection.DeleteOne(filter);
+            var filter = Builders<BsonDocument>.Filter.Eq("contentId", contentId);
+
+            for (int x = 0;x < loops; x++){
+                collection.DeleteOne(filter);
+            }
+
+            Console.WriteLine($"Deleted {loops} documents!");
         }
     }
 }

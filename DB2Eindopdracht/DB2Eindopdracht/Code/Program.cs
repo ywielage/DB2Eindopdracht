@@ -10,7 +10,7 @@ namespace DB2Eindopdracht
         static string version = "Mongo";
         static int loops = 10;
         // Action: CRUD op volgorde. 0 = Create, 1 = Read etc.
-        static int action = 0;
+        static int action = 3;
 
 
         public static void Main(String[] args)
