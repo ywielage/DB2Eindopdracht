@@ -14,9 +14,9 @@ namespace DB2Eindopdracht.ADO.NET
             stopwatch = new Stopwatch();
         }
 
-        public async void Run(int loop, int type)
+        public async void Run(int loop, int action)
         {
-            if (type == 0)
+            if (action == 0)
             {
                 stopwatch.Start();
                 for (int i = 0; i < loop; i++)
@@ -27,7 +27,7 @@ namespace DB2Eindopdracht.ADO.NET
                 Console.WriteLine("Customer added");
                 Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
             }
-            else if (type == 1)
+            else if (action == 1)
             {
                 stopwatch.Start();
                 for (int i = 0; i < loop; i++)
@@ -37,19 +37,7 @@ namespace DB2Eindopdracht.ADO.NET
                 stopwatch.Stop();
                 Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
             }
-            else if (type == 2)
-            {
-                stopwatch.Start();
-                for (int i = 0; i < loop; i++)
-                {
-                    await DeleteCustomer("email" + i + "@gmail.com");
-                    Console.WriteLine("Customer named: email" + i + "gmail.com has been deleted from the database");
-                }
-                stopwatch.Stop();
-                
-                Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
-            }
-            else if (type == 3)
+            else if (action == 2)
             {
                 stopwatch.Start();
                 for (int i = 0; i < loop; i++)
@@ -58,6 +46,18 @@ namespace DB2Eindopdracht.ADO.NET
                 }
                 stopwatch.Stop();
                 Console.WriteLine("Data updated");
+                Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+            }
+            else if (action == 3)
+            {
+                stopwatch.Start();
+                for (int i = 0; i < loop; i++)
+                {
+                    await DeleteCustomer("email" + i + "@gmail.com");
+                    Console.WriteLine("Customer named: email" + i + "gmail.com has been deleted from the database");
+                }
+                stopwatch.Stop();
+
                 Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
             }
         }

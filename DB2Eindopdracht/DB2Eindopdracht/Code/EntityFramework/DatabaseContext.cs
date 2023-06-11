@@ -33,31 +33,5 @@ namespace DB2Eindopdracht
             Database.SetInitializer(
                 new CreateDatabaseIfNotExists<DatabaseContext>());
         }
-
-/*        public void addData() { 
-            using  (var db = new DatabaseContext())
-            {
-                try
-                {
-                    var newCustomer = new User
-                    {
-                        EmailAdress = "1@gmail.com",
-                        Password = "1pw",
-                        Active = true,
-                        LoginAttempts = 1,
-                        Blocked = true,
-                        Date = "762023"
-                    };
-
-                    db.Users.Add(newCustomer);
-                    db.SaveChanges();
-                    Console.WriteLine("Data has been inserted");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-        }*/
     }
 }

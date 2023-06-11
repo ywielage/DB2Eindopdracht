@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Github Projects\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht.csproj": {}
+    "C:\\Users\\ywiel\\Github\\CoachTwin\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht.csproj": {}
   },
   "projects": {
-    "D:\\Github Projects\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht.csproj": {
+    "C:\\Users\\ywiel\\Github\\CoachTwin\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github Projects\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht.csproj",
+        "projectUniqueName": "C:\\Users\\ywiel\\Github\\CoachTwin\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht.csproj",
         "projectName": "DB2Eindopdracht",
-        "projectPath": "D:\\Github Projects\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht.csproj",
-        "packagesPath": "C:\\Users\\Yanniek\\.nuget\\packages\\",
-        "outputPath": "D:\\Github Projects\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht\\obj\\",
+        "projectPath": "C:\\Users\\ywiel\\Github\\CoachTwin\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht.csproj",
+        "packagesPath": "C:\\Users\\ywiel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ywiel\\Github\\CoachTwin\\DB2Eindopdracht\\DB2Eindopdracht\\DB2Eindopdracht\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Yanniek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ywiel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -63,7 +63,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -75,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
