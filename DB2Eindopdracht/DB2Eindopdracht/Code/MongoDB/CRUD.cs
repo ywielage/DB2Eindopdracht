@@ -1,12 +1,6 @@
 ﻿using MongoDB.Driver;
 using MongoDB.Bson;
 using System.Diagnostics;
-using System;
-using DB2Eindopdracht.EntityFramework.Entities;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using System;
-using System.Threading.Tasks;
 
 namespace DB2Eindopdracht.MongoDB
 {
@@ -15,7 +9,6 @@ namespace DB2Eindopdracht.MongoDB
         MongoClient dbClient;
         IMongoDatabase database;
         Stopwatch stopwatch;
-        List<BsonDocument> dblist;
 
         int action;
         int loops;

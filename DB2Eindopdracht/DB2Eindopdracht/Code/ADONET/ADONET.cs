@@ -1,7 +1,4 @@
-﻿using System.Data;
-using System.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-using System;
+﻿using System.Data.SqlClient;
 using System.Diagnostics;
 
 namespace DB2Eindopdracht.ADO.NET
@@ -12,6 +9,7 @@ namespace DB2Eindopdracht.ADO.NET
         public ADONET()
         {
             stopwatch = new Stopwatch();
+
         }
 
         public async void Run(int loop, int action)
@@ -66,7 +64,7 @@ namespace DB2Eindopdracht.ADO.NET
         {
             using (SqlConnection conn = new SqlConnection("data source=(localdb)\\MSSQLLocalDB;Initial catalog=NetflixDB;"))
             {
-                SqlCommand cmd = new SqlCommand("Insert into Customer (emailAdress, password, active, loginAttempts, blocked, createdDate) values ('" + emailAdress + "', 'password', 'TRUE', 12, 'FALSE', '2008-06-12')", conn);
+                SqlCommand cmd = new SqlCommand("Insert into Customer (emailAdress, password, active, loginAttempts, blocked, createdDate) values ('" + emailAdress + "', 'password', 'FALSE', 12, 'FALSE', '2008-06-12')", conn);
                 conn.Open();
                 var result = cmd.ExecuteNonQuery();
                 conn.Close();
